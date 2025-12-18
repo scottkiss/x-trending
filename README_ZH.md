@@ -55,3 +55,9 @@ npm run dev
 ```
 
 在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看结果。
+
+## 部署到 Vercel
+
+最简单的方式是使用 [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) 从 Next.js 的创作者部署您的 Next.js 应用。
+
+查看 [Next.js 部署文档](https://nextjs.org/docs/app/building-your-application/deploying) 获取更多详细信息。
