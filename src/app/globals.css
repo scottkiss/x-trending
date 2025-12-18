@@ -1,0 +1,375 @@
+@import "tailwindcss";
+
+:root {
+  /* Geek/Hacker Dark Mode */
+  --background: #0a0a0a;
+  --foreground: #00ff41;
+  --card: #0d0d0d;
+  --muted: #111111;
+  --muted-foreground: #4a9e4a;
+  --border: rgba(0, 255, 65, 0.15);
+
+  /* Neon Accent colors */
+  --accent: #00ff41;
+  --accent-secondary: #39ff14;
+  --accent-foreground: #000000;
+
+  /* Cyan secondary */
+  --cyan: #00d9ff;
+  --magenta: #ff00ff;
+
+  /* Shadows with glow */
+  --shadow-sm: 0 0 10px rgba(0, 255, 65, 0.1);
+  --shadow-accent: 0 0 30px rgba(0, 255, 65, 0.3);
+  --glow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+/* Light Mode - Clean & Comfortable */
+[data-theme="light"] {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --muted: #f0f0f0;
+  --muted-foreground: #666666;
+  --border: rgba(0, 0, 0, 0.08);
+
+  /* Softer teal/green accent for light mode */
+  --accent: #0d9488;
+  --accent-secondary: #14b8a6;
+  --accent-foreground: #ffffff;
+
+  /* Complementary colors */
+  --cyan: #0891b2;
+  --magenta: #d946ef;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-accent: 0 4px 20px rgba(13, 148, 136, 0.15);
+  --glow: none;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-cyan: var(--cyan);
+  --color-magenta: var(--magenta);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-accent: var(--shadow-accent);
+  --font-sans: "IBM Plex Mono", "Fira Code", monospace;
+  --font-serif: "IBM Plex Mono", monospace;
+  --font-mono: "IBM Plex Mono", "Fira Code", monospace;
+}
+
+/* Terminal-style Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--muted);
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+  box-shadow: var(--glow);
+}
+
+/* Main body with scanlines effect */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "IBM Plex Mono", "Fira Code", monospace;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+/* Disable scanlines in light mode */
+[data-theme="light"] body::before {
+  display: none;
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Glow animation */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+    box-shadow: 0 0 5px var(--accent);
+  }
+
+  50% {
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+  }
+}
+
+/* Button styles - Terminal style */
+.btn {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 150ms ease;
+  font-size: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transition: left 400ms ease;
+  opacity: 0.1;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 150ms ease;
+  font-size: 0.75rem;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-secondary);
+  box-shadow: var(--glow);
+}
+
+/* ASCII-style borders for cards */
+.geek-border {
+  border: 1px solid var(--accent);
+  position: relative;
+}
+
+.geek-border::before {
+  content: "╔";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  color: var(--accent);
+}
+
+.geek-border::after {
+  content: "╗";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  color: var(--accent);
+}
+
+/* Masonry grid for tweets */
+.masonry-preview {
+  column-count: 3;
+  column-gap: 1rem;
+}
+
+@media (max-width: 1400px) {
+  .masonry-preview {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .masonry-preview {
+    column-count: 1;
+  }
+}
+
+/* Image grid for image mode */
+.image-mode-grid {
+  column-count: 4;
+  column-gap: 4px;
+}
+
+@media (max-width: 1200px) {
+  .image-mode-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .image-mode-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 540px) {
+  .image-mode-grid {
+    column-count: 1;
+  }
+}
+
+/* Hover effects for cards */
+.tweet-card-wrapper:hover .card-actions,
+.image-mode-card:hover .image-card-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Animation keyframes */
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Matrix-style text effect */
+@keyframes matrix-drop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Fix Twitter embed margins */
+.twitter-tweet {
+  margin: 0 !important;
+}
+
+/* Glitch effect for headers */
+.glitch {
+  position: relative;
+  animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-skew {
+  0% {
+    transform: skew(0deg);
+  }
+
+  10% {
+    transform: skew(-0.5deg);
+  }
+
+  20% {
+    transform: skew(0.5deg);
+  }
+
+  30% {
+    transform: skew(0deg);
+  }
+
+  100% {
+    transform: skew(0deg);
+  }
+}
+
+/* Terminal prompt style */
+.terminal-prompt::before {
+  content: "> ";
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Status indicator - like a terminal status bar */
+.status-bar {
+  border-top: 1px solid var(--accent);
+  background: rgba(0, 255, 65, 0.05);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
