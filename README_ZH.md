@@ -8,6 +8,9 @@
 - **按日期归档**：查看特定日期的内容。
 - **简洁界面**：简单的卡片式布局展示推文。
 
+# 示例
+[https://xtrending.yyztsy.com](https://xtrending.yyztsy.com/)
+
 ## 数据管理
 
 内容完全基于文件管理，位于 `data` 目录下。

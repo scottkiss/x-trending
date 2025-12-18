@@ -9,6 +9,9 @@ A simple archival tool for daily trending topics on X (Twitter), organized by ca
 - **Date-based Archive**: View content by specific dates.
 - **Clean UI**: Simple card-based layout to visualize tweets.
 
+## DEMO
+[https://xtrending.yyztsy.com](https://xtrending.yyztsy.com/)
+
 ## Data Management
 
 The content is strictly file-based and located in the `data` directory.
