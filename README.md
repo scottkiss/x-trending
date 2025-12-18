@@ -1,7 +1,9 @@
 # X-Trending
-
-[中文说明-README_ZH.md](https://github.com/scottkiss/x-trending/blob/main/README_ZH.md)
 A simple archival tool for daily trending topics on X (Twitter), organized by category and date. Built with Next.js.
+[中文说明-README_ZH.md](https://github.com/scottkiss/x-trending/blob/main/README_ZH.md)
+
+![](https://github.com/scottkiss/x-trending/blob/main/public/screen-shot.png)
+
 
 ## Features
 
